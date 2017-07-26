@@ -1,4 +1,4 @@
 
 BUILD FAILED
 
-Total time: 5.526 secs
+Total time: 3.704 secs
