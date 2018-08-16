@@ -6,7 +6,7 @@ buildscript {
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath "org.grails.plugins:hibernate5:${gormVersion-".RELEASE"}"
-        classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.14.7"
+        classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.14.8"
     }
 }
 
@@ -17,8 +17,8 @@ apply plugin:"eclipse"
 apply plugin:"idea"
 apply plugin:"war"
 apply plugin:"org.grails.grails-web"
-apply plugin:"org.grails.grails-gsp"
 apply plugin:"asset-pipeline"
+apply plugin:"org.grails.grails-gsp"
 
 repositories {
     mavenLocal()
@@ -51,7 +51,7 @@ dependencies {
     runtime "org.glassfish.web:el-impl:2.1.2-b03"
     runtime "com.h2database:h2"
     runtime "org.apache.tomcat:tomcat-jdbc"
-    runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.14.7"
+    runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.14.8"
     testCompile "org.grails:grails-gorm-testing-support"
     testCompile "org.grails:grails-web-testing-support"
     testCompile "org.grails.plugins:geb:1.1.2"
@@ -63,7 +63,8 @@ dependencies {
 bootRun {
     jvmArgs('-Dspring.output.ansi.enabled=always')
     addResources = true
-    systemProperties System.properties
+    String springProfilesActive = 'spring.profiles.active'
+    systemProperty springProfilesActive, System.getProperty(springProfilesActive)
 }
 
 tasks.withType(Test) {
